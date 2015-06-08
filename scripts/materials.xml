@@ -1,0 +1,35 @@
+<materials>
+    <material Z="1" name="Vacuum" state="gas">
+       <T unit="K" value="2.73"/>
+       <P unit="pascal" value="3e-18"/>
+       <D unit="g/cm3" value="1e-25"/>
+       <atom unit="g/mole" value="1.01"/>
+    </material>
+
+    <material Z="1" name="LiquidHydrogen" state="liquid">
+      <T unit="K" value="20.27"/>
+      <D unit="g/cm3" value="0.0708"/>
+      <atom unit="g/mole" value="1.00794"/>
+    </material>
+    
+    <element name="Oxygen" formula="O" Z="8">
+	<atom value="16.0"/> 
+    </element>  
+    
+    <element name="Silicon" formula="Si" Z="14">
+	<atom value="28.09"/> 
+    </element>  
+     
+    <material name="Quartz" state="solid">
+      <MEE unit="eV" value="125.663004061076"/>
+      <D unit="g/cm3" value="2.2"/>
+      <composite n="1" ref="Silicon"/>
+      <composite n="2" ref="Oxygen"/>
+    </material>
+
+    <material Z="13" name="Aluminium" state="solid">
+      <MEE unit="eV" value="166"/>
+      <D unit="g/cm3" value="2.7"/>
+      <atom unit="g/mole" value="26.98"/>
+    </material>
+</materials>
