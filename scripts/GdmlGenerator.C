@@ -15,7 +15,7 @@ int GdmlGenerator()
 {
 int i,j,num=0; //looping variable
 
-char preamble[500]="<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n\n<!DOCTYPE gdml [ \n\t<!ENTITY definitions SYSTEM \"definitionsDet.xml\"> \n\t<!ENTITY materials SYSTEM \"materials.xml\"> \n\t<!ENTITY solids SYSTEM \"solidsDet.xml\">\n]> \n\n<gdml xmlns:gdml=\"http://cern.ch/2001/Schemas/GDML\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"schema/gdml.xsd\"> \n\n&definitions;\n&materials; \n&solids;";
+char preamble[500]="<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n\n<!DOCTYPE gdml [ \n\t<!ENTITY definitions SYSTEM \"definitionsDet.xml\"> \n\t<!ENTITY optical_definitions SYSTEM \"definitions_global.xml\"> \n\t<!ENTITY materials SYSTEM \"materials.xml\"> \n\t<!ENTITY solids SYSTEM \"solidsDet.xml\">\n]> \n\n<gdml xmlns:gdml=\"http://cern.ch/2001/Schemas/GDML\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"schema/gdml.xsd\"> \n\n&definitions;\n&materials; \n&solids;";
 
 char geometryFolder[30]="geometry_new";
 
