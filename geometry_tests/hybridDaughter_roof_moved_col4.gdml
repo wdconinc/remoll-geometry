@@ -32,8 +32,9 @@
     <position name="posCOLL5" unit="mm" x="0" y="0" z="12835-DOFFSET"/>
     <constant name="COLL5_THICK" value ="70.0"/>
 
-    <!-- main coll, adjust this -->
-    <constant name="posPCOLL2_z" value ="9825-DOFFSET"/>
+    <!-- main collimator number 4, adjust this -->
+    <constant name="col4shift" value ="1500"/>
+    <constant name="posPCOLL2_z" value ="9825-DOFFSET-col4shift"/>
     <position name="posPCOLL2" unit="mm" x="0" y="0" z="posPCOLL2_z"/>
     <constant name="PCOLL2_R1_U" value ="38.0"/>
     <constant name="PCOLL2_R1_D" value ="38.0"/>
@@ -100,19 +101,7 @@
     <position name="boxDSShield_trans2" unit="mm" x="-1*DSShield_x_offset" y="-1*DSShield_y_offset" z="0"/> 
     <!-- <position name="boxDSShield_trans2" unit="mm" x="-1*DSShield_x_offset" y="-1*DSShield_y_offset + DSShield_top_thickness*1/2" z="0 + DSShield_side_thickness*1/2"/> -->
     <position name="boxDSShield1_center" unit="mm" x="DSShield_x_offset" y="DSShield_y_offset" z="DSShield_side_thickness"/>
-
-   <!--   <position name="boxDSShield1_roof_center" unit="mm" x="0*DSShield_x_offset" y="DSShield_y_offset+DSShield_height/2" z="1*DSShield_side_thickness+DSPolyShield1_side_thickness-DSShield_length/4"/>  -->
-
-
-
- <!-- <position name="boxDSShield1_roof_center" unit="mm" x="0*DSShield_x_offset" y="0*DSShield_y_offset+DSShield_height/10" z=" -2927.72"/> -->
- 
-
-<position name="boxDSShield1_roof_center" unit="mm" x="0*DSShield_x_offset" y="DSShield_height/6" z=" -2927.71"/>
-
- <position name="boxDSShield1_roof1_center" unit="mm" x="0*DSShield_x_offset" y="DSShield_height/6-87.515" z=" -2927.71"/> 
-
-
+    <position name="boxDSShield1_roof_center" unit="mm" x="0*DSShield_x_offset" y="DSShield_y_offset+DSShield_height/2" z="1*DSShield_side_thickness+DSPolyShield1_side_thickness-DSShield_length/4"/>
 
     <!--Mother volume -->
     <constant name="boxDSMother_width" value="2*4500"/>
@@ -1209,10 +1198,7 @@
       <positionref ref="boxDSShield_trans2" />
     </subtraction>     
     
-    <!-- <box lunit="mm" name="boxDSShield1_roof_solid" x="DSShield_width/2" y="DSShield_roof_thickness" z="DSShield_length/2"/> -->
-
- <box lunit="mm" name="boxDSShield1_roof_solid" x="DSShield_width/2" y="DSShield_roof_thickness" z="DSShield_length/8"/>
- <box lunit="mm" name="boxDSShield1_roof1_solid" x="DSShield_width/2" y="20" z="DSShield_length/8"/>
+    <box lunit="mm" name="boxDSShield1_roof_solid" x="DSShield_width/2" y="DSShield_roof_thickness" z="DSShield_length/2"/>
 
 
 </solids>
@@ -1403,9 +1389,8 @@
       <auxiliary auxtype="DetNo" auxvalue="6024"/>
     </volume>
 
-
    <volume name="boxDSShield1_roof_logic">
-      <materialref ref="Concrete"/>                       
+      <materialref ref="Lead"/>
       <solidref ref="boxDSShield1_roof_solid"/>
       <auxiliary auxtype="Color" auxvalue="red"/>
       <auxiliary auxtype="SensDet" auxvalue="Shielding_Block_Roof_Det"/> <!-- NEW Sensitive detector FIXME -->
@@ -1413,19 +1398,12 @@
     </volume>
 
 
-      <volume name="boxDSShield1_roof1_logic">
-      <materialref ref="Lead"/>                       
-      <solidref ref="boxDSShield1_roof1_solid"/>
-      <auxiliary auxtype="Color" auxvalue="red"/>  
-   </volume>
-               
-
-
-
     <volume name="DSShield_Tube_logic">
       <materialref ref="Lead"/>
       <solidref ref="DSShield_Tube_solid_1"/>
       <auxiliary auxtype="Color" auxvalue="red"/>
+      <auxiliary auxtype="SensDet" auxvalue="Lead_shldtube"/> <!-- NEW Sensitive detector FIXME -->
+      <auxiliary auxtype="DetNo" auxvalue="6028"/>
     </volume>
 
     <!-- beam pipe -->
@@ -1567,11 +1545,11 @@
       <physvol name="DScoll_5">
         <volumeref ref="logicDScoll_5"/>
         <positionref ref="posCOLL5"/>
-	<rotationref ref="ARotateZ_0"/> 
+	    <rotationref ref="ARotateZ_0"/> 
       </physvol>
 
       <physvol name="DScoll_6">
-	<volumeref ref="logicPDScollunion_1"/>
+	      <volumeref ref="logicPDScollunion_1"/>
         <positionref ref="posPCOLL2"/>
       </physvol>
 
@@ -1579,7 +1557,7 @@
 <!--
 
       <physvol name="pcoll2trap_phys">
-	<volumeref ref="logicpcoll2trap"/>
+	      <volumeref ref="logicpcoll2trap"/>
         <positionref ref="posPCOLL2TRAP"/>
       </physvol>
 -->
@@ -1615,24 +1593,10 @@
         <positionref ref="boxDSShield1_center"/>
       </physvol>
 -->
-
-
-
-
-
-  <physvol>
+      <physvol>
         <volumeref ref="boxDSShield1_roof_logic"/>
         <positionref ref="boxDSShield1_roof_center"/>
       </physvol>
-
-
-<physvol>
-        <volumeref ref="boxDSShield1_roof1_logic"/>
-        <positionref ref="boxDSShield1_roof1_center"/>
-      </physvol>
-
-
-
 
    </volume>
 </structure>

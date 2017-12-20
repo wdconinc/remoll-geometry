@@ -14,11 +14,11 @@
   <constant name="length_mother" value="90000."/>
 
   <!-- Hall - wall, floor and "dump" -->
-  <!-- <constant name="radius_of_hall" value="26517"/>
+  <constant name="radius_of_hall" value="26517"/>
   <constant name="width_wall" value="20000"/> 
   <constant name="height_wall" value="7200."/>  
   <constant name="thick_wall" value="1547.76"/> 
-  <constant name="center_wall" value="radius_of_hall+thick_wall/2"/>      Not in use anymore -->
+  <constant name="center_wall" value="radius_of_hall+thick_wall/2"/>
 
   <constant name="radius_of_cylwall" value="25460."/>
   <constant name="thick_cylwall" value="1487."/>  
@@ -31,16 +31,14 @@
   <constant name="center_cylwall" value="height_cylwall/2+bottom_cylwall"/>
   <constant name="trans_topwall" value="radius_topwall_out-(-center_topwall+bottom_cylwall+height_cylwall)"/> 
 
-  <!--  <constant name="thick_floor" value="500."/> 
+  <constant name="thick_floor" value="500."/> 
   <constant name="width_floor" value="20000."/> 
-  <constant name="floor_y_center" value="(-height_wall-thick_floor)/2"/>   
+  <constant name="floor_y_center" value="(-height_wall-thick_floor)/2"/>
 
   <constant name="width_dump" value="6000."/> 
-  <constant name="height_dump" value="height_wall"/>                       Not in use anymore--> 
-
-
+  <constant name="height_dump" value="height_wall"/> 
+  <constant name="length_dump" value="6000."/> 
 <!--  <constant name="center_dump" value="radius_of_hall+length_dump/2+thick_wall"/> -->
-  <constant name="length_dump" value="6000."/>
   <constant name="center_dump" value="radius_of_cylwall+length_dump/2+thick_cylwall"/>
   <constant name="center_cyldump" value="radius_of_cylwall+length_dump/2+thick_cylwall"/>
 
@@ -204,13 +202,11 @@
       <materialref ref="Concrete"/>
       <!-- <materialref ref="Kryptonite"/> -->
       <solidref ref="cylwall_hole"/>
-      <auxiliary auxtype="SensDet" auxvalue="Hall_Det"/> <!-- NEW Sensitive detector FIXME -->
-      <auxiliary auxtype="DetNo" auxvalue="6000"/>
       <!-- <auxiliary auxtype="SensDet" auxvalue="volumeN5009"/> -->
     </volume>
 
     <volume name="logicHall">
-      <materialref ref="Vacuum"/>  <!-- air ??? -->
+      <materialref ref="Vacuum"/>
       <solidref ref="boxHallMother"/>
       <!-- <solidref ref="boxHallMother_out"/> -->
 
@@ -219,12 +215,30 @@
         <positionref ref="cylHallDet_1_center"/>
 	<rotationref ref="scRot_1"/>
       </physvol>
+
       <physvol>
         <volumeref ref="cylHallDet_2_logic"/>
         <positionref ref="cylHallDet_2_center"/>
 	<rotationref ref="scRot_1"/>
       </physvol>
 
+      <physvol>
+        <volumeref ref="cylHallDet_3_logic"/>
+        <positionref ref="cylHallDet_3_center"/>
+	<rotationref ref="scRot_1"/>
+      </physvol>
+
+
+<!--This detector needs hall mother volume setup in very complecated way so that detector volume is not overlapped by the hall volume -->
+<!--
+      <physvol>
+        <volumeref ref="cylHallDet_4_logic"/>
+        <positionref ref="cylHallDet_1_center"/>
+	<rotationref ref="scRot_1"/>
+      </physvol>
+-->
+
+<!--
       <physvol name="topwalldet">
         <volumeref ref="topwalldet_logic"/>
         <positionref ref="topwall_center"/>
@@ -236,26 +250,9 @@
         <positionref ref="cylwall_center"/>
         <rotationref ref="scRot_1"/>
       </physvol>
-
-
-<!-- The concrete floor is added to simulation and cylHallDet_3 is no longer used -->
-<!--
-      <physvol>
-        <volumeref ref="cylHallDet_3_logic"/>
-        <positionref ref="cylHallDet_3_center"/>
-	<rotationref ref="scRot_1"/>
-      </physvol>
 -->
 
-<!--This detector needs hall mother volume setup in very complecated way so that detector volume is not overlapped by the hall volume -->
 <!--
-      <physvol>
-        <volumeref ref="cylHallDet_4_logic"/>
-        <positionref ref="cylHallDet_1_center"/>
-	<rotationref ref="scRot_1"/>
-      </physvol>
--->
-
       <physvol name="topwall">
         <volumeref ref="topwall_logic"/>
         <positionref ref="topwall_center"/>
@@ -267,7 +264,7 @@
         <positionref ref="cylwall_center"/>
         <rotationref ref="scRot_1"/>
       </physvol>
-
+-->
     </volume>
 
 </structure>
