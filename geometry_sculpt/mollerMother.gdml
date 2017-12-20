@@ -37,7 +37,9 @@
 
       <!-- Target -->
       <physvol>
-	<!-- file name="geometry_sculpt/targetDaughter.gdml"/ -->
+	<!-- Default target: LH2 -->
+	<file name="geometry_sculpt/targetDaughter.gdml"/>
+	<!-- Other target: C12 -->
 	<file name="geometry_sculpt/target12C.gdml"/>
 	<positionref ref="targetCenter"/>
 	<rotationref ref="identity"/>
