@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema/gdml.xsd">
 
-  <define>
-    <position name="targetCenter" x="0" y="0" z="0"/>
-    <position name="upstreamCenter" x="0" y="0" z="7000."/>
-    <position name="hybridCenter" x="0" y="0" z="13366.57"/>
-    
-    <position name="GEM1Center" x="0" y="0" z="-0+22700.-230.-10."/> 
-    <position name="GEM2Center" x="0" y="0" z="-0+23700.-230.-10."/> 
-    <position name="GEM3Center" x="0" y="0" z="-0+27700.-230.-10."/> 
-    <position name="GEM4Center" x="0" y="0" z="-0+28700.-230.-10."/> 
-
-    <position name="mainDetCenter" x="0" y="0" z="-0+28500."/>
-
-    <rotation name="identity"/>
+<define>
+     <position name="targetCenter" x="0" y="0" z="0"/>
+     <position name="upstreamCenter" x="0" y="0" z="7000."/>
+     <position name="hybridCenter" x="0" y="0" z="13366.57"/>
+     <position name="GEM1Center" x="0" y="0" z="-0+22700.-230.-10."/> 
+     <position name="GEM2Center" x="0" y="0" z="-0+23700.-230.-10."/> 
+     <position name="GEM3Center" x="0" y="0" z="-0+27700.-230.-10."/> 
+     <position name="GEM4Center" x="0" y="0" z="-0+28700.-230.-10."/> 
+     <position name="detectorCenter" x="0" y="0" z="28500."/>
+     <!-- full pion detector system pionDetectorCenter should be around 31-32000 mm -->
+     <position name="pionDetectorCenter" x="0" y="0" z="32000."/>
+     <rotation name="identity"/>
 </define>
 
 <materials>
@@ -45,18 +44,34 @@
 	<rotationref ref="identity"/>
       </physvol>
 
+      <!-- Simple disc detector -->
+      <physvol>
+      <file name="geometry_sculpt/detectorDaughter.gdml"/>
+      <positionref ref="detectorCenter"/>
+      <rotationref ref="identity"/>
+      </physvol> 
+      
+      <!-- Barrel detector --> 
+      <!-- BUGGED
+      <physvol>
+      <file name = "geometry_sculpt/mollerdet.gdml"/>
+      <positionref ref="detectorCenter"/>
+      <rotationref ref ="identity"/>
+      </physvol>
+    	-->     
+
+      <physvol>
+      <file name="geometry_sculpt/pionDetectorSystem.gdml"/>
+      <positionref ref="pionDetectorCenter"/>
+      <rotationref ref="identity"/>
+
       <!-- These are spectrometers -->
       <physvol>
-	<file name="geometry_sculpt/upstreamDaughter.gdml"/>
-	<positionref ref="upstreamCenter"/>
-	<rotationref ref="identity"/>
+    	<file name="geometry_sculpt/upstreamDaughter.gdml"/>
+	    <positionref ref="upstreamCenter"/>
+	    <rotationref ref="identity"/>
       </physvol>
-      <physvol>
-	<file name="geometry_sculpt/hybridDaughter.gdml"/>
-	<positionref ref="hybridCenter"/>
-	<rotationref ref="identity"/>
-      </physvol>
-      
+
       <!-- Detectors -->
       <!-- Main Detectors -->
       
@@ -89,6 +104,12 @@
 	<file name="geometry_sculpt/daughterGEM4.gdml"/>
 	<positionref ref="GEM4Center"/>
 	<rotationref ref="identity"/>
+      </physvol>
+
+      <physvol>
+      <file name="geometry_sculpt/hybridDaughter.gdml"/>
+      <positionref ref="hybridCenter"/>
+      <rotationref ref="identity"/>
       </physvol>
 
     </volume>
