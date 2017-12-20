@@ -1,0 +1,109 @@
+<materials>
+    <material Z="1" name="Vacuum" state="gas">
+       <T unit="K" value="2.73"/>
+       <P unit="pascal" value="3e-18"/>
+       <D unit="g/cm3" value="1e-25"/>
+       <atom unit="g/mole" value="1.01"/>
+    </material>
+
+    <material Z="1" name="LiquidHydrogen" state="liquid">
+      <T unit="K" value="20.27"/>
+      <D unit="g/cm3" value="0.0708"/>
+      <atom unit="g/mole" value="1.00794"/>
+    </material>
+    
+ <!-- Added unit "g/mole" to Oxygen and Silicon -Chris H.-->
+    <element name="Oxygen" formula="O" Z="8">
+	<atom unit="g/mole" value="16.0"/> 
+    </element>  
+    
+    <element name="Silicon" formula="Si" Z="14">
+	<atom unit ="g/mole" value="28.09"/> 
+    </element>  
+     
+ <!-- Added properties to Quartz and Aluminum -Chris H.-->    
+     
+    <material name="Quartz" state="solid">
+      <property name="ABSLENGTH" ref="ABSLENGTH_QUARTZ"/> <!-- Absorption length of quartz-->
+      <property name="RINDEX" ref="RINDEX_QUARTZ"/> <!-- Index of refraction of quartz-->
+      <MEE unit="eV" value="125.663004061076"/>
+      <D unit="g/cm3" value="2.2"/>
+      <composite n="1" ref="Silicon"/>
+      <composite n="2" ref="Oxygen"/>
+    </material>
+    
+    <material Z="13" name="Aluminium" state="solid">
+      <property name="RINDEX" ref="RINDEX_ALUMINIUM"/> <!-- Index of refraction of Al-->
+      <property name="REFLECTIVITY" ref="REFLECTIVITY_ALUMINIUM"/> <!--Reflectivity coeff of Al-->
+      <property name="TRANSMITTANCE" ref="TRANSMITTANCE_ALUMINIUM"/> <!--Transmission coeff of Al-->
+      <MEE unit="eV" value="166"/>
+      <D unit="g/cm3" value="2.7"/>
+      <atom unit="g/mole" value="26.98"/>
+    </material>
+    
+ <!-- Materials from ./geometry_sculpt/fulldetectorDaughter.gdml possibly useful for optical processes -Chris H.-->
+
+	<material Z="82" name="Lead" state="solid">
+      <MEE unit="eV" value="823"/>
+      <D unit="g/cm3" value="11.35"/>
+      <atom unit="g/mole" value="207.19"/>
+    </material>
+    
+    <element Z="1" name="Hydrogen">
+      <atom unit="g/mole" value="1.01"/>
+    </element>
+    
+    <element Z="6" name="Carbon">
+      <atom unit="g/mole" value="12.011"/>
+    </element>
+    
+    <material name="Tyvek" state="solid">
+      <MEE unit="eV" value="56.5182975271737"/>
+      <D unit="g/cm3" value="0.96"/>
+      <fraction n="0.14396693036847" ref="Hydrogen"/>
+      <fraction n="0.85603306963153" ref="Carbon"/>
+    </material>
+    
+    <element Z="7" name="Nitrogen">
+      <atom unit="g/mole" value="14.01"/>
+    </element>
+    
+    <material name="Air" state="gas">
+      <MEE unit="eV" value="85.7030667332999"/>
+      <D unit="g/cm3" value="0.00129"/>
+      <fraction n="0.7" ref="Nitrogen"/>
+      <fraction n="0.3" ref="Oxygen"/>
+    </material>
+    
+ <!-- The enable optical processes in a volume of air, switch "Air" to "Air_Optical" -Chris H.-->    
+    <material name="Air_Optical" state="gas">
+      <property name="ABSLENGTH" ref="ABSLENGTH_AIR"/>
+      <property name="RINDEX" ref="RINDEX_AIR"/>
+      <property name="FASTCOMPONENT" ref="FASTCOMPONENT_AIR"/>
+      <property name="SLOWCOMPONENT" ref="SLOWCOMPONENT_AIR"/>
+      <property name="SCINTILLATIONYIELD" ref="SCINTILLATIONYIELD_AIR"/>
+      <property name="TRANSMITTANCE" ref="TRANSMITTANCE_AIR"/>
+      <property name="FASTTIMECONSTANT" ref="FASTTIMECONSTANT_AIR"/>
+      <property name="SLOWTIMECONSTANT" ref="SLOWTIMECONSTANT_AIR"/>
+      <property name="YIELDRATIO" ref="YIELDRATIO_AIR"/>
+      <property name="RESOLUTIONSCALE" ref="RESOLUTIONSCALE_AIR"/>
+      <property name="FASTSCINTILLATIONRISETIME" ref="FASTSCINTILLATIONRISETIME_AIR"/>
+      <property name="SLOWSCINTILLATIONRISETIME" ref="SLOWSCINTILLATIONRISETIME_AIR"/>
+      <MEE unit="eV" value="85.7030667332999"/>
+      <D unit="g/cm3" value="0.00129"/>
+      <fraction n="0.7" ref="Nitrogen"/>
+      <fraction n="0.3" ref="Oxygen"/>
+    </material>
+        
+ <!-- When you create PMTs in GdmlGenerator.C, use this material definition for the photocathodes -Chris H.-->        
+    <material Z="19" name="Photocathode" state="solid">
+      <property name="ABSLENGTH" ref="ABSLENGTH_CATHODE"/>
+      <property name="RINDEX" ref="RINDEX_CATHODE"/>
+      <property name="REFLECTIVITY" ref="REFLECTIVITY_CATHODE"/>
+      <property name="EFFICIENCY" ref="EFFICIENCY_CATHODE"/>
+      <MEE unit="eV" value="190"/>
+      <D unit="g/cm3" value="5"/>
+      <atom unit="g/mole" value="39.0983"/>
+    </material>
+
+</materials>
