@@ -11,7 +11,7 @@
     <position name="GEM3Center" x="0" y="0" z="-0+27700.-230.-10."/> 
     <position name="GEM4Center" x="0" y="0" z="-0+28700.-230.-10."/> 
 
-    <position name="mainDetCenter" x="0" y="0" z="-0+28700."/> 
+    <position name="mainDetCenter" x="0" y="0" z="-0+28500."/>
 
     <rotation name="identity"/>
 </define>
